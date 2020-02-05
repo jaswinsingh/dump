@@ -1,0 +1,54 @@
+1.
+
+create table employee_details_table(employee_id int auto_increment primary key,employee_first_name varchar(20),employee_last_name varchar(20),graduation_percentile decimal(5,2));
+
+
+2.
+create table employee_salary_table(employee_id int auto_increment primary key,employee_salary int,employee_code varchar(20));
+
+3.
+create table employee_code_table(employee_code varchar(20) primary key,employee_code_name varchar(20),employee_domain varchar(20));
+
+4.
+create table code(employee_id int primary key auto_increment,code varchar(20));
+
+
+describe employee_details_table;
+
+
+alter table employee_salary_table add foreign key (employee_id) references employee_code_table(employee_code);
+
+
+ALTER TABLE document MODIFY COLUMN document_id INT auto_increment
+
+
+create table parent(id varchar(5) primary key,name varchar(5),cid varchar(5) ,CONSTRAINT FK_PersonOrder FOREIGN KEY (cid)
+    REFERENCES child(cid));
+create table child(cid varchar(5) primary key,namec varchar(5),hobby varchar(5));
+
+
+delete from employee_details_table;
+select * from employee_code_table;
+
+
+sql querry
+
+1. select employee_first_name from employee_details_table as ed,employee_salary_table as es where ed.employee_id=es.employee_id and employee_salary>'70k';
+
+2.
+mysql> select employee_id,employee_last_name from employee_details_table where graduation_percentile>'70%';
+
+3.
+select employee_code_name from employee_details_table as ed,employee_salary_table as es,employee_code_table as ec where ed.employee_id=es.employee_id and es.employee_code=ec.employee_code and graduation_percentile <'70%';
+
+4.
+
+select employee_first_name,employee_last_name from employee_details_table as ed,employee_salary_table as es,employee_code_table as ec where ed.employee_id=es.employee_id and es.employee_code=ec.employee_code and employee_domin !='java';
+
+
+5.
+ select sum(employee_salary) as salary,employee_domain from employee_code_table as ec,employee_salary_table as es where ec.employee_code=es.employee_code group by employee_domain;
+
+
+6
+ select sum(employee_salary) as salary,employee_domain from employee_code_table as ec,employee_salary_table as es where ec.employee_code=es.employee_code and employee_salary >= "30k" group by employee_domain;
